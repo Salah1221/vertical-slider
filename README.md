@@ -35,3 +35,5 @@ This is a simple vertical slider for React apps.
 - Click and drag the thumb to change the value.
 - Use arrow keys when focused.
 - Works on touch devices too.
+
+> Check the `VerticalSlider.css` so you could modify the style of the slider

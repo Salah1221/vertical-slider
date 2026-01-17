@@ -1,5 +1,6 @@
 .vertical-slider {
-  --color: #ff0000;
+  --fill-color: #926bc7;
+  --track-color: #e8e0f3;
   --border-radius: 1.5rem;
   --fill-border-radius: 0.5rem;
   --inner-thumb-width: 3rem;
@@ -15,7 +16,7 @@
 .track {
   height: 100%;
   width: 100%;
-  background: #e0e0e0;
+  background: var(--track-color);
   border-radius: var(--border-radius);
   position: relative;
   cursor: pointer;
@@ -25,7 +26,7 @@
 .fill {
   position: absolute;
   inset: 0;
-  background: var(--color);
+  background: var(--fill-color);
   border-radius: var(--fill-border-radius);
   height: calc(100% + var(--top-padding) + var(--bottom-padding));
 }
