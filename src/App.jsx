@@ -7,7 +7,11 @@ function App() {
   return (
     <>
       <div style={{ margin: "20px" }}>
-        <VerticalSlider value={sliderValue} onChange={setSliderValue} />
+        <VerticalSlider
+          value={sliderValue}
+          stopAt={85}
+          onChange={setSliderValue}
+        />
         <p>Value: {sliderValue.toFixed(0)}</p>
       </div>
     </>

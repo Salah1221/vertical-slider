@@ -7,6 +7,7 @@ function VerticalSlider({
   value = 50,
   onChange,
   step = 1,
+  stopAt = 100,
 }) {
   const [currentValue, setCurrentValue] = useState(value);
   const sliderRef = useRef(null);
@@ -26,8 +27,10 @@ function VerticalSlider({
     if (!sliderRef.current) return;
     const rect = sliderRef.current.getBoundingClientRect();
     const y = clientY - rect.top;
-    const height = rect.height;
-    const percentage = 1 - y / height;
+    const effectiveStartY = rect.height * (1 - stopAt / 100);
+    const effectiveHeight = rect.height - effectiveStartY;
+    const clampedY = Math.max(effectiveStartY, Math.min(rect.height, y));
+    const percentage = 1 - (clampedY - effectiveStartY) / effectiveHeight;
     const newValue = min + percentage * (max - min);
     updateValue(newValue);
   };
@@ -76,6 +79,7 @@ function VerticalSlider({
   };
 
   const percentage = ((currentValue - min) / (max - min)) * 100;
+  const visualPercentage = percentage * (stopAt / 100);
 
   return (
     <div
@@ -95,11 +99,11 @@ function VerticalSlider({
       >
         <div
           className="fill"
-          style={{ transform: `translateY(-${percentage}%)` }}
+          style={{ transform: `translateY(-${visualPercentage}%)` }}
         ></div>
         <div
           className="thumb"
-          style={{ bottom: `${percentage}%` }}
+          style={{ bottom: `${visualPercentage}%` }}
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
         >

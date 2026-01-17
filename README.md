@@ -28,6 +28,7 @@ This is a simple vertical slider for React apps.
 - `value`: Current value (default: 50)
 - `onChange`: Function called when value changes
 - `step`: How much value changes per step (default: 1)
+- `stopAt`: Percentage of height where slider stops (default: 100)
 
 ## How It Works
 
